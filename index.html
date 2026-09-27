@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opening TikTok...</title>
+  <script>
+    window.onload = function() {
+      // TikTok Username
+      var username = "arrows.of.god_official";
+      var fallbackUrl = "https://www.tiktok.com/@" + username;
+
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      var isiOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+      var isAndroid = /Android/.test(userAgent);
+
+      if (isiOS) {
+        // iOS TikTok app scheme
+        window.location.href = "snssdk1233://user/profile/" + username;
+      } else if (isAndroid) {
+        // Android TikTok Intent scheme
+        window.location.href = "intent://user/profile/" + username + "#Intent;package=com.zhiliaoapp.musically;scheme=snssdk1233;end;";
+      } else {
+        // Desktop / default fallback
+        window.location.href = fallbackUrl;
+      }
+
+      // Fallback to browser if app doesn't open in 1.5s
+      setTimeout(function() {
+        window.location.href = fallbackUrl;
+      }, 1500);
+    };
+  </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
+  <p>Redirecting to TikTok...</p>
+  <p><a href="https://www.tiktok.com/@arrows.of.god_official">Click here if not automatically redirected</a></p>
+</body>
+</html>
